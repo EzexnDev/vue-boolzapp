@@ -19,6 +19,11 @@
         height: 100%;
     }
     
+    .chat-user {
+        border-left: 1px solid #D6D6D6;
+        width: 100%
+    }
+    
     .h {
         height: 100%;
     }
@@ -70,5 +75,9 @@
     
     .chat {
         background-image: url(../img/mine.jpg);
-        height: 685px;
+    }
+    
+    .messages-container {
+        display: flex;
+        flex-direction: column;
     }
