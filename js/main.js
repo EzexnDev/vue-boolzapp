@@ -1,75 +1,219 @@
-var whatsapp = {
-    chat: [{
-            user: "Pippo",
-            profileimg: "",
-            messages: [
-                { text: "Hyper text transfer package" },
-                { text: "Hyper text transfer protocol" },
-                { text: "Hyphenation text test program" },
-                { text: "None of the above" }
-            ]
-        },
-        {
-            user: "Mario",
-            profileimg: "",
-            messages: [
-                { text: "Hyper text transfer package" },
-                { text: "Hyper text transfer protocol" },
-                { text: "Hyphenation text test program" },
-                { text: "None of the above" }
-            ]
-        },
-        {
-            user: "Pluto",
-            profileimg: "",
-            messages: [
-                { text: "Hyper text transfer package" },
-                { text: "Hyper text transfer protocol" },
-                { text: "Hyphenation text test program" },
-                { text: "None of the above" }
-            ]
-        },
-        {
-            user: "Fabio",
-            profileimg: "",
-            messages: [
-                { text: "Hyper text transfer package" },
-                { text: "Hyper text transfer protocol" },
-                { text: "Hyphenation text test program" },
-                { text: "None of the above" }
-            ]
-        },
-        {
-            user: "Paperino",
-            profileimg: "",
-            messages: [
-                { text: "Hyper text transfer package" },
-                { text: "Hyper text transfer protocol" },
-                { text: "Hyphenation text test program" },
-                { text: "None of the above" }
-            ]
-        },
-    ]
-};
+var chatList = [{
+        user: "Pippo",
+        profileimg: "../img/avatar_2.jpg",
+        chat: [{
+                text: 'Messaggio di Pippo',
+                sendTime: Date(),
+                isOwnerMessage: false,
+                isViewd: false,
+            },
+            {
+                text: 'Messaggio Mio',
+                sendTime: Date(),
+                isOwnerMessage: true,
+                isViewd: false,
+            }
+        ]
+    },
+    {
+        user: "Mario",
+        profileimg: "../img/avatar_3.jpg",
+        chat: [{
+                text: 'Messaggio di Pippo',
+                sendTime: Date(),
+                isOwnerMessage: false,
+                isViewd: false,
+            },
+            {
+                text: 'Messaggio Mio',
+                sendTime: Date(),
+                isOwnerMessage: true,
+                isViewd: false,
+            }
+        ]
+    },
+    {
+        user: "Pluto",
+        profileimg: "../img/avatar_4.jpg",
+        chat: [{
+                text: 'Messaggio di Pippo',
+                sendTime: Date(),
+                isOwnerMessage: false,
+                isViewd: false,
+            },
+            {
+                text: 'Messaggio Mio',
+                sendTime: Date(),
+                isOwnerMessage: true,
+                isViewd: false,
+            }
+        ]
+    },
+    {
+        user: "Fabio",
+        profileimg: "../img/avatar_5.jpg",
+        chat: [{
+                text: 'Messaggio di Pippo',
+                sendTime: Date(),
+                isOwnerMessage: false,
+                isViewd: false,
+            },
+            {
+                text: 'Messaggio Mio',
+                sendTime: Date(),
+                isOwnerMessage: true,
+                isViewd: false,
+            }
+        ]
+    },
+    {
+        user: "Paperino",
+        profileimg: "../img/avatar_6.jpg",
+        chat: [{
+                text: 'Messaggio di Pippo',
+                sendTime: Date(),
+                isOwnerMessage: false,
+                isViewd: false,
+            },
+            {
+                text: 'Messaggio Mio',
+                sendTime: Date(),
+                isOwnerMessage: true,
+                isViewd: false,
+            }
+        ]
+    },
+    {
+        user: "Paperino",
+        profileimg: "../img/avatar_6.jpg",
+        chat: [{
+                text: 'Messaggio di Pippo',
+                sendTime: Date(),
+                isOwnerMessage: false,
+                isViewd: false,
+            },
+            {
+                text: 'Messaggio Mio',
+                sendTime: Date(),
+                isOwnerMessage: true,
+                isViewd: false,
+            }
+        ]
+    },
+    {
+        user: "Paperino",
+        profileimg: "../img/avatar_6.jpg",
+        chat: [{
+                text: 'Messaggio di Pippo',
+                sendTime: Date(),
+                isOwnerMessage: false,
+                isViewd: false,
+            },
+            {
+                text: 'Messaggio Mio',
+                sendTime: Date(),
+                isOwnerMessage: true,
+                isViewd: false,
+            }
+        ]
+    },
+    {
+        user: "Paperino",
+        profileimg: "../img/avatar_6.jpg",
+        chat: [{
+                text: 'Messaggio di Pippo',
+                sendTime: Date(),
+                isOwnerMessage: false,
+                isViewd: false,
+            },
+            {
+                text: 'Messaggio Mio',
+                sendTime: Date(),
+                isOwnerMessage: true,
+                isViewd: false,
+            }
+        ]
+    },
+    {
+        user: "Paperino",
+        profileimg: "../img/avatar_6.jpg",
+        chat: [{
+                text: 'Messaggio di Pippo',
+                sendTime: Date(),
+                isOwnerMessage: false,
+                isViewd: false,
+            },
+            {
+                text: 'Messaggio Mio',
+                sendTime: Date(),
+                isOwnerMessage: true,
+                isViewd: false,
+            }
+        ]
+    },
+    {
+        user: "Paperino",
+        profileimg: "../img/avatar_6.jpg",
+        chat: [{
+                text: 'Messaggio di Pippo',
+                sendTime: Date(),
+                isOwnerMessage: false,
+                isViewd: false,
+            },
+            {
+                text: 'Messaggio Mio',
+                sendTime: Date(),
+                isOwnerMessage: true,
+                isViewd: false,
+            }
+        ]
+    },
+];
 
 
 var app = new Vue({
 
     el: "#app",
     data: {
-        quiz: quiz,
-        questionIndex: 0,
-        userResponses: userResponseSkelaton,
-        isActive: false
-    },
-
-    filters: {
-        charIndex: function(i) {
-            return String.fromCharCode(97 + i);
-        }
+        chatList: chatList,
+        chatIndex: -1,
+        currentInputMessage: string = '',
+        filterInput: ''
     },
 
     methods: {
 
+        getLastMessage(chatArray) {
+            return chatArray[chatArray.length - 1].text;
+        },
+        selectChat(index, chatArray) {
+            return chatArray[index];
+        },
+        setChatIndex(index) {
+            this.chatIndex = index;
+        },
+        sendMessage() {
+            if (this.currentInputMessage != '') {
+                this.chatList[this.chatIndex].chat.push({
+                    text: this.currentInputMessage,
+                    sendTime: Date(),
+                    isOwnerMessage: true,
+                    isViewd: false
+                });
+                this.currentInputMessage = '';
+            }
+            console.log(this.currentInputMessage);
+        },
+        truncatePreviewMessage(message) {
+            if (message.length >= 20) {
+                return message.substring(0, 16) + '...';
+            }
+            return message;
+        },
+
+        isPresent(value) {
+            console.log(value.user);
+            return value.user;
+        }
     }
 });

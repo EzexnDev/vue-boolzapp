@@ -33,12 +33,12 @@
 </head>
 
 <body>
-    <div id="#app">
+    <div id="app">
         <div class="container p-3">
             <div class="row">
                 <div class="col-md-12 main-container p-0">
                     <div class="row p-0 h">
-                        <div class="list-container h col-4 p-0">
+                        <div class="list-container container-fluid d-flex flex-column flex-fill h col-4 p-0">
                             <div class="row p-2">
                                 <div class="col-8 d-flex align-items-center">
                                     <img class='user-icon' src="img/avatar_1.jpg" alt="IconaUtente">
@@ -63,45 +63,59 @@
                             </div>
                             <div class="row m-0">
                                 <div class="search-chat col-12 p-2">
-                                    <input class="form-control" type="text" placeholder="Cerca o Inizia una nuova Chat" aria-label="Search">
+                                    <input class="form-control" type="text" placeholder="Cerca o Inizia una nuova Chat" aria-label="Search" v-model='filterInput' v-on:keyup.enter=isPresent(filterInput)>
                                 </div>
                             </div>
-                            <div class="row m-0">
-                                <div class="col-12 p-0">
-                                    <ul class='list-unstyled'>
-                                        <li>
-                                            <div class="row pl-4 pt-2 pb-2">
-                                                <img class='user-icon' src="img/avatar_2.jpg" alt="IconaUtente">
-                                                <div class="col">
-                                                    <span>Bufu</span>
+                            <div class="overflowY">
+                                <div class="row m-0">
+                                    <div class="col p-0">
+                                        <ul class='list-unstyled list-group'>
+                                            <li v-for="(el,index) in chatList" @click='setChatIndex(index)' class="list-group-item list-group-item-action ">
+                                                <div class="row pl-4 pt-2 pb-2">
+                                                    <img class='user-icon' :src="chatList[index].profileimg" alt="IconaUtente">
+                                                    <div class="col">
+                                                        <span class="font-weight-bold">{{chatList[index].user}}</span> <br>
+                                                        <span class="message-preview">{{truncatePreviewMessage(getLastMessage(chatList[index].chat))}}</span>
+                                                        <span>{{chatList[index].sendTime}}</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                        <hr class="m-0">
-                                    </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="d-flex flex-column chat-container p-0 h col-8">
-                            <div class=" chat-user p-2 row align-self-center">
-                                <div class="col-10 h d-flex align-items-center">
-                                    <img class='user-icon' src="img/avatar_2.jpg" alt="IconaUtente">
-                                    <span class="m-2">User</span>
+                            <div class="h chat-container d-flex flex-column" v-if="chatIndex  != -1">
+                                <div class=" chat-user p-2 row align-self-center">
+                                    <div class="col-10 h d-flex align-items-center">
+                                        <img class='user-icon' :src="chatList[chatIndex].profileimg" alt="IconaUtente">
+                                        <span class="m-2 font-weight-bold"> 
+                                            {{chatList[chatIndex].user}}
+                                    </span>
+                                    </div>
+                                    <div class="col-2 d-flex justify-content-between align-items-center">
+                                        <i class="fas fa-search fa-lg user-action"></i>
+                                        <i class="fas fa-paperclip fa-lg user-action"></i>
+                                        <i class="fas fa-ellipsis-v fa-lg user-action"></i>
+                                    </div>
                                 </div>
-                                <div class="col-2 d-flex justify-content-between align-items-center">
-                                    <i class="fas fa-search fa-lg user-action"></i>
-                                    <i class="fas fa-paperclip fa-lg user-action"></i>
-                                    <i class="fas fa-ellipsis-v fa-lg user-action"></i>
+                                <div class="messages-container h p-0">
+                                    <div class="col-12 h chat">
+                                        <ul class="d-flex flex-column">
+                                            <li v-for='(el,index) in chatList[chatIndex].chat' class="d-flex" v-bind:class="[chatList[chatIndex].chat[index].isOwnerMessage ? 'justify-content-end' : 'justify-content-start']">
+                                                <div class="message" v-bind:class="[chatList[chatIndex].chat[index].isOwnerMessage ? 'owner-message' : 'sender-message']">{{chatList[chatIndex].chat[index].text}}
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="messages-container h p-0">
-                                <div class="col-12 h chat"></div>
-                            </div>
-                            <div class="mt-auto">
-                                <div class="search-chat col-12 d-flex align-items-center p-2">
-                                    <i class="far fa-smile fa-lg m-2"></i>
-                                    <input class="form-control" type="text" placeholder="Cerca o Inizia una nuova Chat" aria-label="Search">
-                                    <i class="fas fa-microphone fa-lg m-2"></i>
+                                <div class="mt-auto">
+                                    <div class="search-chat col-12 d-flex align-items-center p-2">
+                                        <i class="far fa-smile fa-lg m-2"></i>
+                                        <input class="form-control" type="text" placeholder="Cerca o Inizia una nuova Chat" aria-label="Search" v-on:keyup.enter=sendMessage() v-model="currentInputMessage">
+                                        <i class="fas fa-microphone fa-lg m-2"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -133,6 +147,7 @@
             </div>
         </div>
     </div>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
