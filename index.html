@@ -63,20 +63,25 @@
                             </div>
                             <div class="row m-0">
                                 <div class="search-chat col-12 p-2">
-                                    <input class="form-control" type="text" placeholder="Cerca o Inizia una nuova Chat" aria-label="Search" v-model='filterInput' v-on:keyup.enter=isPresent(filterInput)>
+                                    <form action="#" class="form d-flex flex-row align-items-center">
+                                        <i class="fas fa-search form__icon pl-2"></i>
+                                        <input type="text" name="search" class="form__input form-control" placeholder="      Search" v-model='filterInput' v-on:keyup=filterChatList(filterInput)>
+                                    </form>
+                                    <!-- <i class="fas fa-search form__icon fa-spin"></i>
+                                    <input class=" form-control " type="text " placeholder="&#xF002; Cerca o Inizia una nuova Chat " style="font-family:Arial, FontAwesome " aria-label="Search " v-model='filterInput' v-on:keyup.enter=isPresent(filterInput)> -->
                                 </div>
                             </div>
-                            <div class="overflowY">
-                                <div class="row m-0">
-                                    <div class="col p-0">
+                            <div class="overflowY ">
+                                <div class="row m-0 ">
+                                    <div class="col p-0 ">
                                         <ul class='list-unstyled list-group'>
-                                            <li v-for="(el,index) in chatList" @click='setChatIndex(index)' class="list-group-item list-group-item-action ">
-                                                <div class="row pl-4 pt-2 pb-2">
-                                                    <img class='user-icon' :src="chatList[index].profileimg" alt="IconaUtente">
-                                                    <div class="col">
-                                                        <span class="font-weight-bold">{{chatList[index].user}}</span> <br>
-                                                        <span class="message-preview">{{truncatePreviewMessage(getLastMessage(chatList[index].chat))}}</span>
-                                                        <span>{{chatList[index].sendTime}}</span>
+                                            <li v-for="(el,index) in filteredChatList " @click='setChatIndex(index)' class="list-group-item list-group-item-action ">
+                                                <div class="row pl-4 pt-2 pb-2 ">
+                                                    <img class='user-icon' :src="filteredChatList[index].profileimg " alt="IconaUtente ">
+                                                    <div class="col ">
+                                                        <span class="font-weight-bold ">{{filteredChatList[index].user}}</span> <br>
+                                                        <span class="message-preview ">{{truncatePreviewMessage(getLastMessage(filteredChatList[index].chat))}}</span>
+                                                        <span>{{filteredChatList[index].sendTime}}</span>
                                                     </div>
                                                 </div>
                                             </li>
@@ -85,60 +90,62 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex flex-column chat-container p-0 h col-8">
-                            <div class="h chat-container d-flex flex-column" v-if="chatIndex  != -1">
-                                <div class=" chat-user p-2 row align-self-center">
-                                    <div class="col-10 h d-flex align-items-center">
-                                        <img class='user-icon' :src="chatList[chatIndex].profileimg" alt="IconaUtente">
-                                        <span class="m-2 font-weight-bold"> 
+                        <div class="d-flex flex-column chat-container p-0 h col-8 ">
+                            <div class="h chat-container d-flex flex-column " v-if="chatIndex !=- 1 ">
+                                <div class=" chat-user p-2 row align-self-center ">
+                                    <div class="col-10 h d-flex align-items-center ">
+                                        <img class='user-icon' :src="chatList[chatIndex].profileimg " alt="IconaUtente ">
+                                        <span class="m-2 font-weight-bold "> 
                                             {{chatList[chatIndex].user}}
                                     </span>
                                     </div>
-                                    <div class="col-2 d-flex justify-content-between align-items-center">
-                                        <i class="fas fa-search fa-lg user-action"></i>
-                                        <i class="fas fa-paperclip fa-lg user-action"></i>
-                                        <i class="fas fa-ellipsis-v fa-lg user-action"></i>
+                                    <div class="col-2 d-flex justify-content-between align-items-center ">
+                                        <i class="fas fa-search fa-lg user-action "></i>
+                                        <i class="fas fa-paperclip fa-lg user-action "></i>
+                                        <i class="fas fa-ellipsis-v fa-lg user-action "></i>
                                     </div>
                                 </div>
-                                <div class="messages-container h p-0">
-                                    <div class="col-12 h chat">
-                                        <ul class="d-flex flex-column">
-                                            <li v-for='(el,index) in chatList[chatIndex].chat' class="d-flex" v-bind:class="[chatList[chatIndex].chat[index].isOwnerMessage ? 'justify-content-end' : 'justify-content-start']">
-                                                <div class="message" v-bind:class="[chatList[chatIndex].chat[index].isOwnerMessage ? 'owner-message' : 'sender-message']">{{chatList[chatIndex].chat[index].text}}
+                                <div class="messages-container overflow-hidden h p-0 ">
+                                    <div class="col-12 h overflowY chat ">
+                                        <ul class="d-flex flex-column ">
+                                            <li v-for='(el,index) in chatList[chatIndex].chat' class="d-flex " v-bind:class="[chatList[chatIndex].chat[index].isOwnerMessage ? 'justify-content-end' : 'justify-content-start'] ">
+                                                <div class="message " v-bind:class="[chatList[chatIndex].chat[index].isOwnerMessage ? 'owner-message' : 'sender-message']">{{chatList[chatIndex].chat[index].text}}
+                                                    <p class="date-time m-0" v-bind:class="[chatList[chatIndex].chat[index].isOwnerMessage ? 'owner-color' : 'sender-color']">{{chatList[chatIndex].chat[index].sendTime}}</p>
                                                 </div>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="mt-auto">
-                                    <div class="search-chat col-12 d-flex align-items-center p-2">
-                                        <i class="far fa-smile fa-lg m-2"></i>
-                                        <input class="form-control" type="text" placeholder="Cerca o Inizia una nuova Chat" aria-label="Search" v-on:keyup.enter=sendMessage() v-model="currentInputMessage">
-                                        <i class="fas fa-microphone fa-lg m-2"></i>
+                                <div class="mt-auto ">
+                                    <div class="search-chat col-12 d-flex align-items-center p-2 ">
+                                        <i class="far fa-smile fa-lg m-2 "></i>
+                                        <input class="form-control " type="text " placeholder="Cerca o Inizia una nuova Chat " aria-label="Search " v-on:keyup.enter="sendMessage()" v-model="currentInputMessage">
+                                        <i class="fas fa-microphone fa-lg m-2" v-if="currentInputMessage == ''"></i>
+                                        <i class="fa fa-paper-plane fa-lg m-1" v-else @click="sendMessage();"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="chat-container h col-8">
-                            <div class="row p-2 align-items-start chat-user">
-                                <div class="col-10 h d-flex align-items-center">
-                                    <img class='user-icon' src="img/avatar_2.jpg" alt="IconaUtente">
-                                    <span class="m-2">User</span>
+                        <!-- <div class="chat-container h col-8 ">
+                            <div class="row p-2 align-items-start chat-user ">
+                                <div class="col-10 h d-flex align-items-center ">
+                                    <img class='user-icon' src="img/avatar_2.jpg " alt="IconaUtente ">
+                                    <span class="m-2 ">User</span>
                                 </div>
-                                <div class="col-2 d-flex justify-content-between align-items-center">
-                                    <i class="fas fa-search fa-lg user-action"></i>
-                                    <i class="fas fa-paperclip fa-lg user-action"></i>
-                                    <i class="fas fa-ellipsis-v fa-lg user-action"></i>
+                                <div class="col-2 d-flex justify-content-between align-items-center ">
+                                    <i class="fas fa-search fa-lg user-action "></i>
+                                    <i class="fas fa-paperclip fa-lg user-action "></i>
+                                    <i class="fas fa-ellipsis-v fa-lg user-action "></i>
                                 </div>
                             </div>
-                            <div class="row messages-container p-0">
-                                <div class="col-12 h chat"></div>
+                            <div class="row messages-container p-0 ">
+                                <div class="col-12 h chat "></div>
                             </div>
-                            <div class="row align-items- p-0">
-                                <div class="search-chat col-12 p-2 d-flex align-items-center">
-                                    <i class="far fa-smile fa-lg m-2"></i>
-                                    <input class="form-control" type="text" placeholder="Cerca o Inizia una nuova Chat" aria-label="Search">
-                                    <i class="fas fa-microphone fa-lg m-2"></i>
+                            <div class="row align-items- p-0 ">
+                                <div class="search-chat col-12 p-2 d-flex align-items-center ">
+                                    <i class="far fa-smile fa-lg m-2 "></i>
+                                    <input class="form-control " type="text " placeholder="Cerca o Inizia una nuova Chat " aria-label="Search ">
+                                    <i class="fas fa-microphone fa-lg m-2 "></i>
                                 </div>
                             </div>
                         </div> -->
@@ -147,7 +154,7 @@
             </div>
         </div>
     </div>
-    <script src="js/main.js"></script>
+    <script src="js/main.js "></script>
 </body>
 
 </html>

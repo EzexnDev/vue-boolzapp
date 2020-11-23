@@ -1,111 +1,169 @@
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
-    
-    body {
-        background: linear-gradient( #009688 0%, #009688 15%, #D8DBD7 15%, #D8DBD7 100%);
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
-    
-    .main-container {
-        height: 90vh;
-    }
-    
-    .chat-container {
-        background-color: #EAEAEA;
-        height: 100%;
-    }
-    
-    .chat-user {
-        border-left: 1px solid #D6D6D6;
-        width: 100%
-    }
-    
-    .h {
-        height: 100%;
-    }
-    
-    .list-container {
-        background-color: #EAEAEA;
-    }
-    
-    .user-icon {
-        border-radius: 50%;
-        height: 40px;
-        width: 40px;
-    }
-    
-    .light-blue {
-        background-color: #8EDAFC;
-        height: 80px;
-    }
-    
-    .user-action {
-        color: #B1B1B1;
-    }
-    
-    .bell-icon {
-        color: #8EDAFC;
-    }
-    
-    .icon {
-        background-color: #F2FBFF;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-    }
-    
-    ul {
-        list-style: none;
-    }
-    
-    .search-chat {
-        background-color: #FAFAFA;
-    }
-    
-    input::before {
-        font-family: Font Awesome 5 Free;
-        font-weight: 900;
-        content: \f002;
-    }
-    
-    .chat {
-        background-image: url(../img/mine.jpg);
-    }
-    
-    .messages-container {
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .message {
-        width: max-content;
-        max-width: 50%;
-        padding: 5px;
-        border-radius: 10px;
-        margin-top: 10px;
-        word-wrap: break-word;
-    }
-    
-    .message-preview {
-        font-size: 14px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    
-    .owner-message {
-        background-color: #DCF8C6;
-    }
-    
-    .sender-message {
-        background-color: #FFFFFF;
-    }
-    
-    .overflowY {
-        overflow-y: scroll;
-        overflow-x: hidden;
-    }
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(#009688 0%, #009688 15%, #D8DBD7 15%, #D8DBD7 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.date-time {
+    font-size: 10px;
+    text-align: end;
+}
+
+.owner-color {
+    color: #ACC699;
+}
+
+.sender-color {
+    color: #CACACA;
+}
+
+.main-container {
+    height: 90vh;
+}
+
+.form__icon {
+    position: absolute;
+    pointer-events: none;
+    z-index: 2;
+    color: #B8BABC;
+}
+
+.form__input {
+    position: relative;
+    z-index: 3;
+}
+
+.form__input:placeholder-shown {
+    z-index: 1;
+}
+
+.chat-container {
+    background-color: #EAEAEA;
+    height: 100%;
+}
+
+.chat-user {
+    border-left: 1px solid #D6D6D6;
+    width: 100%
+}
+
+.h {
+    height: 100%;
+}
+
+.list-container {
+    background-color: #EAEAEA;
+}
+
+.user-icon {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.light-blue {
+    background-color: #8EDAFC;
+    height: 80px;
+}
+
+.user-action {
+    color: #B1B1B1;
+}
+
+.bell-icon {
+    color: #8EDAFC;
+}
+
+.icon {
+    background-color: #F2FBFF;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+ul {
+    list-style: none;
+}
+
+.search-chat {
+    background-color: #FAFAFA;
+}
+
+.fontAw {
+    padding: 10px;
+    font-family: FontAwesome, "Open Sans", Verdana, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    font-size: 20px;
+}
+
+input::before {
+    font-family: Font Awesome 5 Free;
+    font-weight: 900;
+    content: \f002;
+}
+
+.chat {
+    background-image: url(../img/mine.jpg);
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
+
+.messages-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    width: max-content;
+    max-width: 50%;
+    padding: 5px;
+    border-radius: 10px;
+    margin-top: 10px;
+    word-wrap: break-word;
+}
+
+.message-preview {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.owner-message {
+    background-color: #DCF8C6;
+}
+
+.sender-message {
+    background-color: #FFFFFF;
+}
+
+.overflowY {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #99938D;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00FFFFFF;
+}
