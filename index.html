@@ -95,9 +95,13 @@
                                 <div class=" chat-user p-2 row align-self-center ">
                                     <div class="col-10 h d-flex align-items-center ">
                                         <img class='user-icon' :src="chatList[chatIndex].profileimg " alt="IconaUtente ">
-                                        <span class="m-2 font-weight-bold "> 
-                                            {{chatList[chatIndex].user}}
-                                    </span>
+                                        <div class="col">
+                                            <span class="m-0 font-weight-bold "> 
+                                                {{chatList[chatIndex].user}}
+                                            </span>
+                                            <p class="m-0 message-preview ">{{chatList[chatIndex].lastSeen}}
+                                            </p>
+                                        </div>
                                     </div>
                                     <div class="col-2 d-flex justify-content-between align-items-center ">
                                         <i class="fas fa-search fa-lg user-action "></i>
@@ -105,8 +109,8 @@
                                         <i class="fas fa-ellipsis-v fa-lg user-action "></i>
                                     </div>
                                 </div>
-                                <div class="messages-container overflow-hidden h p-0 ">
-                                    <div class="col-12 h overflowY chat ">
+                                <div class="messages-container overflow-hidden h p-0">
+                                    <div class="col-12 h overflowY chat">
                                         <ul class="d-flex flex-column ">
                                             <li v-for='(el,index) in chatList[chatIndex].chat' class="d-flex " v-bind:class="[chatList[chatIndex].chat[index].isOwnerMessage ? 'justify-content-end' : 'justify-content-start'] ">
                                                 <div class="message " v-bind:class="[chatList[chatIndex].chat[index].isOwnerMessage ? 'owner-message' : 'sender-message']">{{chatList[chatIndex].chat[index].text}}
@@ -118,37 +122,14 @@
                                 </div>
                                 <div class="mt-auto ">
                                     <div class="search-chat col-12 d-flex align-items-center p-2 ">
-                                        <i class="far fa-smile fa-lg m-2 "></i>
+                                        <i class="far fa-smile fa-lg m-3 "></i>
                                         <input class="form-control " type="text " placeholder="Cerca o Inizia una nuova Chat " aria-label="Search " v-on:keyup.enter="sendMessage()" v-model="currentInputMessage">
-                                        <i class="fas fa-microphone fa-lg m-2" v-if="currentInputMessage == ''"></i>
-                                        <i class="fa fa-paper-plane fa-lg m-1" v-else @click="sendMessage();"></i>
+                                        <i class="fas fa-microphone fa-lg m-3" v-if="currentInputMessage == ''"></i>
+                                        <i class="fa fa-paper-plane fa-lg m-3" v-else @click="sendMessage();"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="chat-container h col-8 ">
-                            <div class="row p-2 align-items-start chat-user ">
-                                <div class="col-10 h d-flex align-items-center ">
-                                    <img class='user-icon' src="img/avatar_2.jpg " alt="IconaUtente ">
-                                    <span class="m-2 ">User</span>
-                                </div>
-                                <div class="col-2 d-flex justify-content-between align-items-center ">
-                                    <i class="fas fa-search fa-lg user-action "></i>
-                                    <i class="fas fa-paperclip fa-lg user-action "></i>
-                                    <i class="fas fa-ellipsis-v fa-lg user-action "></i>
-                                </div>
-                            </div>
-                            <div class="row messages-container p-0 ">
-                                <div class="col-12 h chat "></div>
-                            </div>
-                            <div class="row align-items- p-0 ">
-                                <div class="search-chat col-12 p-2 d-flex align-items-center ">
-                                    <i class="far fa-smile fa-lg m-2 "></i>
-                                    <input class="form-control " type="text " placeholder="Cerca o Inizia una nuova Chat " aria-label="Search ">
-                                    <i class="fas fa-microphone fa-lg m-2 "></i>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>
