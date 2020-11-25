@@ -182,6 +182,7 @@ var app = new Vue({
         currentInputMessage: string = '',
         filterInput: '',
         currentTime: '',
+        visible: false,
     },
 
     methods: {

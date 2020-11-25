@@ -27,6 +27,59 @@ body {
     height: 90vh;
 }
 
+.splash-container {
+    background-color: #F8F9FA;
+    overflow-y: hidden;
+}
+
+.splash-container h2 {
+    font-weight: 300;
+    font-size: 2em;
+    margin: 20px 0;
+    color: rgb(105, 103, 103)
+}
+
+.splash-container h3 {
+    font-weight: 300;
+    font-size: .9em;
+    color: rgb(73, 73, 73);
+    margin: 0 20px;
+    text-align: center;
+}
+
+;
+.splash-img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.splash__animate {
+    -webkit-animation: splash__animate 0.4s cubic-bezier(0.950, 0.050, 0.795, 0.035) both;
+    animation: splash__animate 0.4s cubic-bezier(0.950, 0.050, 0.795, 0.035) both;
+}
+
+@-webkit-keyframes splash__animate {
+    0% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes splash__animate {
+    0% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
 .form__icon {
     position: absolute;
     pointer-events: none;
@@ -52,6 +105,7 @@ body {
     border-left: 1px solid #D6D6D6;
     width: 100%;
     max-height: 56px;
+    min-height: 56px;
 }
 
 .h {
@@ -79,6 +133,12 @@ body {
 
 .bell-icon {
     color: #8EDAFC;
+}
+
+.emoji-button {
+    border: none;
+    background-color: #F8F9FA;
+    outline: none;
 }
 
 .icon {
