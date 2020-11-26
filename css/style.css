@@ -147,6 +147,11 @@ emoji-picker {
     outline: none;
 }
 
+.emoji-container {
+    overflow-y: scroll;
+    max-height: 20%;
+}
+
 .icon {
     background-color: #F2FBFF;
     width: 50px;
