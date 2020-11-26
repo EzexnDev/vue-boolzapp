@@ -19,6 +19,7 @@ var chatList = [{
     {
         user: "Mario",
         profileimg: "../img/avatar_3.jpg",
+        lastSeen: 'Ultimo accesso oggi alle ' + new Date().toLocaleTimeString(),
         chat: [{
                 text: 'Messaggio di Pippo',
                 sendTime: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString(),
@@ -36,6 +37,7 @@ var chatList = [{
     {
         user: "Pluto",
         profileimg: "../img/avatar_4.jpg",
+        lastSeen: 'Ultimo accesso oggi alle ' + new Date().toLocaleTimeString(),
         chat: [{
                 text: 'Messaggio di Pippo',
                 sendTime: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString(),
@@ -53,6 +55,7 @@ var chatList = [{
     {
         user: "Fabio",
         profileimg: "../img/avatar_5.jpg",
+        lastSeen: 'Ultimo accesso oggi alle ' + new Date().toLocaleTimeString(),
         chat: [{
                 text: 'Messaggio di Pippo',
                 sendTime: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString(),
@@ -70,6 +73,7 @@ var chatList = [{
     {
         user: "Consuelo",
         profileimg: "../img/avatar_7.jpg",
+        lastSeen: 'Ultimo accesso oggi alle ' + new Date().toLocaleTimeString(),
         chat: [{
                 text: 'Messaggio di Pippo',
                 sendTime: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString(),
@@ -87,6 +91,7 @@ var chatList = [{
     {
         user: "Marina",
         profileimg: "../img/avatar_8.jpg",
+        lastSeen: 'Ultimo accesso oggi alle ' + new Date().toLocaleTimeString(),
         chat: [{
                 text: 'Messaggio di Pippo',
                 sendTime: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString(),
@@ -104,6 +109,7 @@ var chatList = [{
     {
         user: "Jean Claud",
         profileimg: "../img/avatar_io.jpg",
+        lastSeen: 'Ultimo accesso oggi alle ' + new Date().toLocaleTimeString(),
         chat: [{
                 text: 'Messaggio di Pippo',
                 sendTime: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString(),
@@ -121,8 +127,9 @@ var chatList = [{
     {
         user: "Grazia",
         profileimg: "../img/avatar_2.jpg",
+        lastSeen: 'Ultimo accesso oggi alle ' + new Date().toLocaleTimeString(),
         chat: [{
-                text: 'Messaggio di Pippo',
+                text: 'Sono Grazia',
                 sendTime: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString(),
                 isOwnerMessage: false,
                 isViewd: false,
@@ -138,8 +145,9 @@ var chatList = [{
     {
         user: "Genoveffa",
         profileimg: "../img/avatar_4.jpg",
+        lastSeen: 'Ultimo accesso oggi alle ' + new Date().toLocaleTimeString(),
         chat: [{
-                text: 'Messaggio di Pippo',
+                text: 'Sono Genoveffa',
                 sendTime: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString(),
                 isOwnerMessage: false,
                 isViewd: false,
@@ -155,8 +163,9 @@ var chatList = [{
     {
         user: "Marco",
         profileimg: "../img/avatar_7.jpg",
+        lastSeen: 'Ultimo accesso oggi alle ' + new Date().toLocaleTimeString(),
         chat: [{
-                text: 'Messaggio di Pippo',
+                text: 'Cavoletti sono Marco',
                 sendTime: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString(),
                 isOwnerMessage: false,
                 isViewd: false,
@@ -205,7 +214,7 @@ var app = new Vue({
         sendMessage() {
             if (this.currentInputMessage != '') {
                 var now = new Date();
-                this.chatList[this.chatIndex].chat.push({
+                this.filteredChatList[this.chatIndex].chat.push({
                     text: this.currentInputMessage,
                     sendTime: now.toLocaleDateString() + ' ' + now.toLocaleTimeString(),
                     isOwnerMessage: true,
@@ -274,6 +283,21 @@ var app = new Vue({
             }
             return message;
         },
+
+        // filteredChatIndex(index) {
+
+        //     const el = this.filteredChatList[index];
+        //     let newChatIndex = 0;
+        //     this.chatList.forEach((contact, i) => {
+        //         if (contact.name == el.name) {
+        //             newChatIndex = i;
+        //         }
+        //     });
+
+        //     this.chatIndex = newChatIndex;
+        //     console.log();
+
+        // },
 
         filterChatList(filterText) {
             if (filterText == '') {
